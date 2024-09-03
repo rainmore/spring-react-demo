@@ -101,8 +101,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-tomcat")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    // API
     implementation("io.swagger.core.v3:swagger-annotations:2.2.22")
+    implementation("cz.jirutka.rsql:rsql-parser:2.1.0")
+
 
     // Logging
     implementation("org.slf4j:slf4j-api:2.0.16")
