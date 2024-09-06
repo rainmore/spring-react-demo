@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 
 @Tag(name = "Book APIs")
 @RestController
@@ -31,9 +33,8 @@ public class BookController {
     public PageDto<Book> list(
             @RequestParam(value = "search", required = false) String search,
             Pageable pageable) {
-        if (search != null) {
-            Node rootNode = new RSQLParser().parse(search);
-        }
+
+        Optional<Node> node = Optional.ofNullable(search).map(searchStr -> new RSQLParser().parse(searchStr));
 
         return new PageDto<>(pageable);
     }

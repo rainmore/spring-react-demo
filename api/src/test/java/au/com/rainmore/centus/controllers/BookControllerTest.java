@@ -24,7 +24,10 @@ class BookControllerTest {
                         .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.total").exists());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.total").isNumber());
+
     }
 }

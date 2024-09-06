@@ -3,17 +3,22 @@ package au.com.rainmore.centus.services.dto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.Objects;
 
 public record PageDto<T>(
         List<T> content,
-        Pageable pageable,
+        int pageNumber,
+        int pageSize,
         long total
 ) {
     public PageDto {
         Objects.requireNonNull(content);
-        Objects.requireNonNull(pageable);
+    }
+
+    public PageDto(List<T> content, Pageable pageable, long total) {
+        this(content, pageable.getPageNumber(), pageable.getPageSize(), content.size());
     }
 
     public PageDto(Page<T> page) {
