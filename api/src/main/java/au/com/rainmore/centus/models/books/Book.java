@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "booksBook")
-@Table(name = "books")
+@Table(name = "BOOKS")
 public class Book extends CreateableModel {
 
     private Long id;
@@ -43,9 +43,9 @@ public class Book extends CreateableModel {
     }
 
     @ManyToMany
-    @JoinTable(name = "bookAuthors",
-            joinColumns = @JoinColumn(name = "bookId"),
-            inverseJoinColumns = @JoinColumn(name = "authorId"))
+    @JoinTable(name = "BOOKS_BOOKS_AUTHORS",
+            joinColumns = @JoinColumn(name = "BOOK_ID"),
+            inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
     public List<Author> getAuthors() {
         return authors;
     }

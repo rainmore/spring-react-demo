@@ -6,14 +6,13 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity(name = "booksAuthor")
-@Table(name = "books")
+@Table(name = "BOOK_AUTHORS")
 public class Author extends CreateableModel {
 
-    public Long id;
-    public String firstName;
+    public Long   id;
+    public String firstname;
     public String middleName;
-    public String lastName;
-    public String email;
+    public String lastname;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +27,12 @@ public class Author extends CreateableModel {
     @Column(nullable = false)
     @NotEmpty
     @Size(max = 150)
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstName) {
+        this.firstname = firstName;
     }
 
     @Column
@@ -49,21 +48,11 @@ public class Author extends CreateableModel {
     @Column(nullable = false)
     @NotEmpty
     @Size(max = 150)
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Column
-    @Size(max = 250)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastname(String lastName) {
+        this.lastname = lastName;
     }
 }

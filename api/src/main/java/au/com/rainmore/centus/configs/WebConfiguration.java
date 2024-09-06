@@ -2,7 +2,6 @@ package au.com.rainmore.centus.configs;
 
 import au.com.rainmore.centus.utils.PagingUtils;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -16,7 +15,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-        resolver.setFallbackPageable(PageRequest.of(PagingUtils.DEFAULT_PAGE_NUMBER, PagingUtils.DEFAULT_PAGE_SIZE));
+        resolver.setFallbackPageable(PagingUtils.DEFAULT_PAGEABLE);
         resolver.setPrefix("_");
         resolvers.add(resolver);
     }

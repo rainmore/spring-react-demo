@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity(name = "booksCategory")
-@Table(name = "bookCategories")
+@Table(name = "BOOK_CATEGORIES")
 public class Category extends CreateableModel {
 
     private Long id;
@@ -47,7 +47,7 @@ public class Category extends CreateableModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "parentId")
+    @JoinColumn(name = "PARENT_ID")
     public Category getParent() {
         return parent;
     }

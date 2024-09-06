@@ -10,7 +10,7 @@ spring:
     ansi:
       enabled: detect
   jackson:
-    default-property-inclusion: NON_EMPTY
+    default-property-inclusion: ALWAYS
     deserialization:
       fail-on-unknown-properties: false   # Allow unexpected JSON properties in requests – they will be silently ignored.
     serialization:
@@ -31,7 +31,7 @@ spring:
   h2:
     console:
       enabled: false
-      path: /h2-member-console
+      path: /h2-api-console
       settings:
         web-allow-others: false
   devtools:

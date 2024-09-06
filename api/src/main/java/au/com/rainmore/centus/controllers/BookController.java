@@ -1,6 +1,7 @@
 package au.com.rainmore.centus.controllers;
 
 import au.com.rainmore.centus.models.books.Book;
+import au.com.rainmore.centus.services.books.BookRepository;
 import au.com.rainmore.centus.services.dto.PageDto;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
@@ -9,6 +10,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,13 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookController {
 
+    @Autowired
+    private final BookRepository bookRepository;
+
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     @Operation(summary = "Retrieve books",
             description = "This API returns books.")
     @ApiResponse(
@@ -36,7 +46,8 @@ public class BookController {
 
         Optional<Node> node = Optional.ofNullable(search).map(searchStr -> new RSQLParser().parse(searchStr));
 
-        return new PageDto<>(pageable);
+        Page<Book> books = bookRepository.findAll(pageable);
+        return new PageDto<>(books);
     }
 
 }
