@@ -1,10 +1,16 @@
 import org.gradle.api.tasks.wrapper.Wrapper
 
 plugins {
-    idea
+    id("idea")
 }
 
 tasks.named<Wrapper>("wrapper").configure {
     distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = project.properties["gradleVersion"] as String
+    gradleVersion = project.properties["gradle.version"] as String
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }

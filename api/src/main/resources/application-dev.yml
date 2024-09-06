@@ -1,0 +1,30 @@
+---
+# General Spring configuration
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    username: guest
+    password: guest
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        cachecontrol:
+          max-age: 0d
+          no-cache: true
+
+# Configuration for Logback.
+logging:
+  config: classpath:logback-dev.xml

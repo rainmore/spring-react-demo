@@ -1,6 +1,6 @@
 package au.com.rainmore.centus.controllers;
 
-import au.com.rainmore.centus.domains.Book;
+import au.com.rainmore.centus.models.books.Book;
 import au.com.rainmore.centus.services.dto.PageDto;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;

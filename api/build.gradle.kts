@@ -1,10 +1,10 @@
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
-    application
-    idea
-    id("org.springframework.boot") version "3.3.3"
-    id("io.spring.dependency-management") version "1.1.5"
+    id("java")
+    id("application")
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
 }
 
 group = "au.com.rainmore.centus"
@@ -25,10 +25,6 @@ allprojects {
     }
 }
 
-tasks.withType<JavaCompile> {
-    options.compilerArgs.add("-Xlint:unchecked")
-}
-
 application {
     mainClass.set(listOf(project.group.toString(), "Application").joinToString("."))
 }
@@ -38,7 +34,6 @@ tasks.withType<Jar> {
         attributes["Main-Class"] = application.mainClass.get()
     }
 }
-
 
 sourceSets {
     create("testInt") {
@@ -92,41 +87,61 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-autoconfigure")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-tomcat")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // API
-    implementation("io.swagger.core.v3:swagger-annotations:2.2.22")
-    implementation("cz.jirutka.rsql:rsql-parser:2.1.0")
+    implementation("io.swagger.core.v3:swagger-annotations:${project.properties["swagger-annotations.version"]}")
+    implementation("cz.jirutka.rsql:rsql-parser:${project.properties["rsql-parser.version"]}")
 
+    // JPA & DB
+    runtimeOnly("com.h2database:h2")
+    implementation("com.zaxxer:HikariCP")
+    implementation("org.hibernate.orm:hibernate-core")
+    implementation("org.hibernate.validator:hibernate-validator")
+
+    implementation("com.querydsl:querydsl-apt")
+    implementation("com.querydsl:querydsl-sql")
+    implementation("com.querydsl:querydsl-jpa")
+    implementation("com.querydsl:querydsl-sql-spring")
+
+    // Generated Entities
+    annotationProcessor("com.querydsl:querydsl-apt") { artifact {classifier = "jakarta"} }
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+
+    implementation("jakarta.validation:jakarta.validation-api")
+    implementation("jakarta.persistence:jakarta.persistence-api")
+    implementation("org.jetbrains:annotations:${project.properties["jetbrains-annotations.version"]}")
 
     // Logging
-    implementation("org.slf4j:slf4j-api:2.0.16")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.16")
-    implementation("org.slf4j:log4j-over-slf4j:2.0.16")
-    implementation("ch.qos.logback:logback-classic:1.5.7")
-    implementation("ch.qos.logback:logback-core:1.5.7")
+    implementation("org.slf4j:slf4j-api")
+    implementation("org.slf4j:jcl-over-slf4j")
+    implementation("org.slf4j:log4j-over-slf4j")
+    implementation("ch.qos.logback:logback-classic")
+    implementation("ch.qos.logback:logback-core")
 
     // Jackson Json
-    implementation("com.fasterxml.jackson.core:jackson-core:2.17.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta:2.17.2")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta:2.17.2")
+    implementation("com.fasterxml.jackson.core:jackson-core")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta")
 
     // Utilities
-    implementation("org.apache.commons:commons-lang3:3.17.0")
+    implementation("org.apache.commons:commons-lang3")
+    implementation("jakarta.servlet:jakarta.servlet-api")
 
     // Testing
-    testImplementation(platform("org.junit:junit-bom:5.11.0"))
+//    testImplementation(platform("org.junit:junit-bom:${project.properties["junit-bom.version"]}"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     // Test Utilities
-    testImplementation("com.devskiller:jfairy:0.6.5")
-    testImplementation("org.mockito:mockito-core:5.11.0")
-    testImplementation("org.assertj:assertj-core:3.25.3")
+    testImplementation("com.devskiller:jfairy:${project.properties["devskiller-jfairy.version"]}")
+    testImplementation("org.mockito:mockito-core")
+    testImplementation("org.assertj:assertj-core")
 }
 
 

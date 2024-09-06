@@ -1,0 +1,83 @@
+---
+# General Spring configuration
+spring:
+  application:
+    name: API
+  main:
+    banner-mode: "off"
+    log-startup-info: false
+  output:
+    ansi:
+      enabled: detect
+  jackson:
+    default-property-inclusion: NON_EMPTY
+    deserialization:
+      fail-on-unknown-properties: false   # Allow unexpected JSON properties in requests – they will be silently ignored.
+    serialization:
+      write-dates-as-timestamps: false    # We want Java 8 date, and date-times, written as formatted strings like yyyy-MM-dd and not as JSON objects.
+  datasource:
+    url: jdbc:h2:mem:testDb
+    driverClassName: org.h2.Driver
+    username: ${random.uuid} # impossible to guess admin username
+    password: ${random.uuid} # impossible to guess admin password
+  jpa:
+    database: h2
+    generate-ddl: off
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: false
+      path: /h2-member-console
+      settings:
+        web-allow-others: false
+  devtools:
+    add-properties: false
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+  web:
+    resources:
+      add-mappings: true
+      cache:
+        cachecontrol:
+          max-age: 1d
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 10MB
+      location: ./
+      max-file-size: 2MB
+      max-request-size: 4MB
+      resolve-lazily: false
+
+springdoc:
+  swagger-ui:
+    queryConfigEnabled: true
+
+
+# Configuration for Logback.
+logging:
+  config: classpath:logback-dev.xml
+
+# HTTP encoding (HttpEncodingProperties)
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+      force-response: true
+  port: 8080
+  forward-headers-strategy: native
+  error:
+    whitelabel:
+      enabled: true
+    path: /error
+  tomcat:
+    connection-timeout: 18000

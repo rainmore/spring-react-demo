@@ -1,6 +1,14 @@
-package au.com.rainmore.centus.domains;
+package au.com.rainmore.centus.models.books;
 
-public class Category {
+import au.com.rainmore.centus.models.CreateableModel;
+import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+@Entity(name = "booksCategory")
+@Table(name = "bookCategories")
+public class Category extends CreateableModel {
 
     private Long id;
     private String name;
@@ -8,6 +16,8 @@ public class Category {
 
     private Category parent;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -16,6 +26,9 @@ public class Category {
         this.id = id;
     }
 
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(max = 250)
     public String getName() {
         return name;
     }
@@ -24,6 +37,7 @@ public class Category {
         this.name = name;
     }
 
+    @Column
     public String getDescription() {
         return description;
     }
@@ -32,6 +46,8 @@ public class Category {
         this.description = description;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "parentId")
     public Category getParent() {
         return parent;
     }

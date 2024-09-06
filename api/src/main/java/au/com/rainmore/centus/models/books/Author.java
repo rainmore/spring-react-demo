@@ -1,6 +1,13 @@
-package au.com.rainmore.centus.domains;
+package au.com.rainmore.centus.models.books;
 
-public class Author {
+import au.com.rainmore.centus.models.CreateableModel;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+@Entity(name = "booksAuthor")
+@Table(name = "books")
+public class Author extends CreateableModel {
 
     public Long id;
     public String firstName;
@@ -8,6 +15,8 @@ public class Author {
     public String lastName;
     public String email;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -16,6 +25,9 @@ public class Author {
         this.id = id;
     }
 
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(max = 150)
     public String getFirstName() {
         return firstName;
     }
@@ -24,6 +36,8 @@ public class Author {
         this.firstName = firstName;
     }
 
+    @Column
+    @Size(max = 150)
     public String getMiddleName() {
         return middleName;
     }
@@ -32,6 +46,9 @@ public class Author {
         this.middleName = middleName;
     }
 
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(max = 150)
     public String getLastName() {
         return lastName;
     }
@@ -40,6 +57,8 @@ public class Author {
         this.lastName = lastName;
     }
 
+    @Column
+    @Size(max = 250)
     public String getEmail() {
         return email;
     }
