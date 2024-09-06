@@ -29,9 +29,12 @@ public class BookController {
             content = @Content(schema = @Schema(implementation = Book.class)))
     @GetMapping("")
     public PageDto<Book> list(
-            @RequestParam(value = "search") String search,
+            @RequestParam(value = "search", required = false) String search,
             Pageable pageable) {
-        Node rootNode = new RSQLParser().parse(search);
+        if (search != null) {
+            Node rootNode = new RSQLParser().parse(search);
+        }
+
         return new PageDto<>(pageable);
     }
 
