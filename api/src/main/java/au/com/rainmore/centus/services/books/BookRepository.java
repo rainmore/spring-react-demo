@@ -1,7 +1,7 @@
 package au.com.rainmore.centus.services.books;
 
 import au.com.rainmore.centus.domains.books.Book;
-import au.com.rainmore.centus.services.BaseRepository;
+import au.com.rainmore.centus.services.core.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

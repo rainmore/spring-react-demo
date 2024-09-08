@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -32,7 +33,7 @@ class BookControllerTest {
     private BookRepository bookRepository;
 
     @Test
-    void test_list_without_any_request_parameters() throws Exception {
+    void test_list_return_401_without_authentication() throws Exception {
         Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
         Page<Book> page = new PageImpl<>(List.of(), pageable, 0);
         given(bookRepository.findAll(any(Pageable.class))).willReturn(page);
@@ -40,6 +41,21 @@ class BookControllerTest {
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books")
                         .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().isUnauthorized())
+                .andExpect(MockMvcResultMatchers.content().string(""));
+    }
+
+    @Test
+    void test_list_without_any_request_parameters() throws Exception {
+        Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
+        Page<Book> page = new PageImpl<>(List.of(), pageable, 0);
+        given(bookRepository.findAll(any(Pageable.class))).willReturn(page);
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/api/books")
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .with(SecurityMockMvcRequestPostProcessors.user("test-account")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())
@@ -56,7 +72,8 @@ class BookControllerTest {
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books?_pageNumber=0&_pageSize=10")
-                        .accept(MediaType.APPLICATION_JSON_VALUE))
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .with(SecurityMockMvcRequestPostProcessors.user("test-account")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())

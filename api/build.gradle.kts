@@ -85,13 +85,14 @@ dependencies {
     runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
 
     implementation("org.springframework.boot:spring-boot-autoconfigure")
-    implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-tomcat")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 
     // API
     implementation("io.swagger.core.v3:swagger-annotations:${project.properties["swagger-annotations.version"]}")
@@ -109,7 +110,7 @@ dependencies {
     implementation("com.querydsl:querydsl-sql-spring")
 
     // Generated Entities
-    annotationProcessor("com.querydsl:querydsl-apt") { artifact {classifier = "jakarta"} }
+    annotationProcessor("com.querydsl:querydsl-apt") { artifact { classifier = "jakarta" } }
     annotationProcessor("jakarta.persistence:jakarta.persistence-api")
     annotationProcessor("jakarta.annotation:jakarta.annotation-api")
 
@@ -141,7 +142,8 @@ dependencies {
     // Test Utilities
     testImplementation("com.devskiller:jfairy:${project.properties["devskiller-jfairy.version"]}")
     testImplementation("org.mockito:mockito-core")
-    testImplementation("org.assertj:assertj-core")
+    testImplementation("org.mockito:mockito-junit-jupiter")
+    testImplementation("org.assertj:assertj-core") //
 }
 
 

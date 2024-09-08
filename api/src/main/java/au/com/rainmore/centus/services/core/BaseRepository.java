@@ -1,4 +1,4 @@
-package au.com.rainmore.centus.services;
+package au.com.rainmore.centus.services.core;
 
 import au.com.rainmore.centus.domains.Model;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +9,6 @@ import java.io.Serializable;
 
 @NoRepositoryBean
 public interface BaseRepository<T extends Model, ID extends Serializable>
-    extends JpaRepository<T, ID>, QuerydslPredicateExecutor<T> {
+        extends JpaRepository<T, ID>, QuerydslPredicateExecutor<T> {
 
 }

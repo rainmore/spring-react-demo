@@ -26,9 +26,9 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookController {
 
-    @Autowired
     private final BookRepository bookRepository;
 
+    @Autowired
     public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
