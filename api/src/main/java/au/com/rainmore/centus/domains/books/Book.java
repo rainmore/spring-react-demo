@@ -14,10 +14,10 @@ import java.util.List;
 @Table(name = "BOOKS")
 public class Book extends CreateableModel {
 
-    private Long id;
+    private Long         id;
     private String       name;
     private List<Author> authors;
-    private LocalDate publicationDate;
+    private LocalDate    publicationDate;
 
     private Category category;
 
@@ -65,7 +65,7 @@ public class Book extends CreateableModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "CATEGORY_ID")
     public Category getCategory() {
         return category;
     }
