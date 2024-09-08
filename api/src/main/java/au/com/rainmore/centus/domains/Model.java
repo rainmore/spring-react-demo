@@ -1,4 +1,4 @@
-package au.com.rainmore.centus.models;
+package au.com.rainmore.centus.domains;
 
 import java.io.Serializable;
 

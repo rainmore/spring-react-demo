@@ -1,6 +1,6 @@
-package au.com.rainmore.centus.models.books;
+package au.com.rainmore.centus.domains.books;
 
-import au.com.rainmore.centus.models.CreateableModel;
+import au.com.rainmore.centus.domains.CreateableModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

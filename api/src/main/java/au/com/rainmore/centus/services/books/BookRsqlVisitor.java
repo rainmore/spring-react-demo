@@ -1,6 +1,6 @@
 package au.com.rainmore.centus.services.books;
 
-import au.com.rainmore.centus.models.books.Book;
+import au.com.rainmore.centus.domains.books.Book;
 import cz.jirutka.rsql.parser.ast.AndNode;
 import cz.jirutka.rsql.parser.ast.ComparisonNode;
 import cz.jirutka.rsql.parser.ast.OrNode;

@@ -1,4 +1,4 @@
-package au.com.rainmore.centus.models;
+package au.com.rainmore.centus.domains;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
