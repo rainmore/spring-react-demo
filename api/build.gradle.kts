@@ -94,6 +94,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 
+    // JWT
+    implementation("com.auth0:java-jwt:${project.properties["java-jwt.version"]}")
+
     // API
     implementation("io.swagger.core.v3:swagger-annotations:${project.properties["swagger-annotations.version"]}")
     implementation("cz.jirutka.rsql:rsql-parser:${project.properties["rsql-parser.version"]}")
@@ -106,7 +109,7 @@ dependencies {
 
     implementation("com.querydsl:querydsl-apt")
     implementation("com.querydsl:querydsl-sql")
-    implementation("com.querydsl:querydsl-jpa")
+    implementation("com.querydsl:querydsl-jpa") { artifact { classifier = "jakarta" } }
     implementation("com.querydsl:querydsl-sql-spring")
 
     // Generated Entities

@@ -1,5 +1,6 @@
 package au.com.rainmore.centus.controllers;
 
+import au.com.rainmore.centus.controllers.books.BookController;
 import au.com.rainmore.centus.domains.books.Book;
 import au.com.rainmore.centus.services.books.BookRepository;
 import au.com.rainmore.centus.utils.PagingUtils;

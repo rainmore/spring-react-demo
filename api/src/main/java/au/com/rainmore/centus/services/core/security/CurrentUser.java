@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class CurrentUser implements UserDetails {
 
-    private Account                   account;
+    private Account                     account;
     private Set<SimpleGrantedAuthority> authorities;
 
     public CurrentUser(Account account, Set<SimpleGrantedAuthority> authorities) {
@@ -49,5 +49,9 @@ public class CurrentUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return account.getStatus().isActive();
+    }
+
+    public Account getAccount() {
+        return account;
     }
 }

@@ -3,7 +3,8 @@ package au.com.rainmore.centus.services.core.security;
 import au.com.rainmore.centus.domains.users.Account;
 import au.com.rainmore.centus.domains.users.Permission;
 import au.com.rainmore.centus.domains.users.Role;
-import au.com.rainmore.centus.services.users.AccountRepository;
+import au.com.rainmore.centus.services.users.AccountService;
+import jakarta.persistence.EntityNotFoundException;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Optional;
 import java.util.Set;
 
 
@@ -24,23 +24,23 @@ import java.util.Set;
 class CurrentUserServiceTest {
 
     @Mock
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     private CurrentUserService currentUserService;
 
     @BeforeEach
     void setUp() {
-        currentUserService = new CurrentUserService(accountRepository);
+        currentUserService = new CurrentUserService(accountService);
     }
 
     @Test
     void test_loadUserByUsername_throw_exception() {
         String email = "test@test.com";
-        BDDMockito.given(accountRepository.findOneByEmail(email)).willReturn(Optional.empty());
+        BDDMockito.given(accountService.findActiveOneByEmail(email)).willThrow(new EntityNotFoundException("no such account"));
 
         Assertions.assertThatThrownBy(() -> currentUserService.loadUserByUsername(email))
                 .isInstanceOf(UsernameNotFoundException.class)
-                .hasMessage("Can't find the account by the given username");
+                .hasMessage("Can't find the account by the given username.");
     }
 
     @Test
@@ -54,7 +54,7 @@ class CurrentUserServiceTest {
         account.setRoles(getRoles());
         account.setPermissions(getPermissions());
 
-        BDDMockito.given(accountRepository.findOneByEmail(email)).willReturn(Optional.of(account));
+        BDDMockito.given(accountService.findActiveOneByEmail(email)).willReturn(account);
 
         UserDetails currentUser = currentUserService.loadUserByUsername(email);
 

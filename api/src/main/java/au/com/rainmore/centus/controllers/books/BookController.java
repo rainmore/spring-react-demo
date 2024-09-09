@@ -1,8 +1,9 @@
-package au.com.rainmore.centus.controllers;
+package au.com.rainmore.centus.controllers.books;
 
+import au.com.rainmore.centus.controllers.BaseRestController;
 import au.com.rainmore.centus.domains.books.Book;
 import au.com.rainmore.centus.services.books.BookRepository;
-import au.com.rainmore.centus.services.dto.PageDto;
+import au.com.rainmore.centus.services.core.dto.PageDto;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +25,7 @@ import java.util.Optional;
 @Tag(name = "Book APIs")
 @RestController
 @RequestMapping("/api/books")
-public class BookController {
+public class BookController extends BaseRestController {
 
     private final BookRepository bookRepository;
 

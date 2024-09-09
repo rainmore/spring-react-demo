@@ -102,12 +102,13 @@ INSERT INTO USER_ACCOUNTS
  LASTNAME,
  EMAIL,
  PASSWORD,
- ACCOUNT_STATUS,
+ STATUS,
  LAST_LOGIN_AT,
  CREATED_AT)
-VALUES (1000, 'test', 'administrator', 'administrator@test,com', 'to be changed', 'ACTIVE', NULL, CURRENT_TIMESTAMP()),
-    (1001, 'test', 'user', 'user@test,com', 'to be changed', 'ACTIVE', NULL, CURRENT_TIMESTAMP()),
-    (1002, 'test', 'disabled', 'disabled@test,com', 'to be changed', 'DISABLED', NULL, CURRENT_TIMESTAMP());
+VALUES (1000, 'test', 'administrator', 'administrator@test.com', '$2a$10$yNYiGeUtd0tJloPwBJxnz.uNhhqkDPg./hjaFdbfFBDNPcbk.Ryz.', 'ACTIVE',
+        NULL, CURRENT_TIMESTAMP()),
+    (1001, 'test', 'user', 'user@test.com', 'to be changed', 'ACTIVE', NULL, CURRENT_TIMESTAMP()),
+    (1002, 'test', 'disabled', 'disabled@test.com', 'to be changed', 'DISABLED', NULL, CURRENT_TIMESTAMP());
 
 INSERT INTO USER_ACCOUNTS_ROLES
 (ACCOUNT_ID,
