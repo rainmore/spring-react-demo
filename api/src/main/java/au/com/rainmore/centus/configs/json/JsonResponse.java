@@ -14,6 +14,10 @@ public record JsonResponse<T>(
         LocalDateTime timestamp
 ) {
 
+    public JsonResponse(T data) {
+        this(data, new String[]{}, LocalDateTime.now());
+    }
+
     public JsonResponse(T data, String[] messages) {
         this(data, messages, LocalDateTime.now());
     }

@@ -2,7 +2,8 @@ package au.com.rainmore.centus.controllers.books;
 
 import au.com.rainmore.centus.controllers.BaseRestController;
 import au.com.rainmore.centus.domains.books.Book;
-import au.com.rainmore.centus.services.books.BookRepository;
+import au.com.rainmore.centus.services.books.BookService;
+import au.com.rainmore.centus.services.books.dto.BookDto;
 import au.com.rainmore.centus.services.core.dto.PageDto;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
@@ -12,7 +13,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +27,12 @@ import java.util.Optional;
 @RequestMapping("/api/books")
 public class BookController extends BaseRestController {
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
     @Autowired
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookController(
+            BookService bookService) {
+        this.bookService = bookService;
     }
 
     @Operation(summary = "Retrieve books",
@@ -41,14 +42,13 @@ public class BookController extends BaseRestController {
             description = "The response payload contains the book details.",
             content = @Content(schema = @Schema(implementation = Book.class)))
     @GetMapping("")
-    public PageDto<Book> list(
+    public PageDto<BookDto> list(
             @RequestParam(value = "search", required = false) String search,
             Pageable pageable) {
 
         Optional<Node> node = Optional.ofNullable(search).map(searchStr -> new RSQLParser().parse(searchStr));
 
-        Page<Book> books = bookRepository.findAll(pageable);
-        return new PageDto<>(books);
+        return bookService.findAllDto(pageable);
     }
 
 }
