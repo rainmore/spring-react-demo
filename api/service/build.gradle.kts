@@ -82,7 +82,7 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    implementation(project(":entity"))
+    implementation(project(":api:entity"))
 
     // Spring
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
