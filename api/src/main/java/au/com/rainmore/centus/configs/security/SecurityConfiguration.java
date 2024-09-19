@@ -29,7 +29,9 @@ public class SecurityConfiguration {
     private final CurrentUserAuthenticationProvider currentUserAuthenticationProvider;
 
 
-    private final static String[] PUBLIC_URLS = {
+    private static final String[] PUBLIC_URLS = {
+            "/api-docs/**",
+            "/swagger-ui/**",
             "/h2-api-console/**",
             "/auth/login",
             "/user/register",

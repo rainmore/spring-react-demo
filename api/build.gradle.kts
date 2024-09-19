@@ -5,6 +5,8 @@ plugins {
     id("application")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
+    id("com.github.psxpaul.execfork")
+    id("org.springdoc.openapi-gradle-plugin")
 }
 
 group = "au.com.rainmore.centus"
@@ -100,6 +102,7 @@ dependencies {
     // API
     implementation("io.swagger.core.v3:swagger-annotations:${project.properties["swagger-annotations.version"]}")
     implementation("cz.jirutka.rsql:rsql-parser:${project.properties["rsql-parser.version"]}")
+    runtimeOnly("org.springdoc:springdoc-openapi-starter-webmvc-ui:${project.properties["springdoc-openapi.version"]}")
 
     // JPA & DB
     runtimeOnly("com.h2database:h2")
