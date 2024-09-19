@@ -1,6 +1,7 @@
 rootProject.name = "spring-react-demo"
 
 include(
+    "entity",
     "api"
 )
 

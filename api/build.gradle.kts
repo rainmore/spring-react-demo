@@ -82,6 +82,8 @@ tasks.withType<Test> {
 }
 
 dependencies {
+    implementation(project(":entity"))
+
     // Spring
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
@@ -110,19 +112,8 @@ dependencies {
     implementation("org.hibernate.orm:hibernate-core")
     implementation("org.hibernate.validator:hibernate-validator")
 
-    implementation("com.querydsl:querydsl-apt")
-    implementation("com.querydsl:querydsl-sql")
     implementation("com.querydsl:querydsl-jpa") { artifact { classifier = "jakarta" } }
     implementation("com.querydsl:querydsl-sql-spring")
-
-    // Generated Entities
-    annotationProcessor("com.querydsl:querydsl-apt") { artifact { classifier = "jakarta" } }
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
-    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
-
-    implementation("jakarta.validation:jakarta.validation-api")
-    implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("org.jetbrains:annotations:${project.properties["jetbrains-annotations.version"]}")
 
     // Logging
     implementation("org.slf4j:slf4j-api")
