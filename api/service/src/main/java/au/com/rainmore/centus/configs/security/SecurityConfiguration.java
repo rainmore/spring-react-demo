@@ -65,7 +65,7 @@ public class SecurityConfiguration {
                                 .accessDeniedHandler(jwtAccessDeniedHandler)
                                 .authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-                .csrf((AbstractHttpConfigurer::disable))
+                .csrf(AbstractHttpConfigurer::disable)
                 .headers(httpHeadersConfigurer ->
                         // added to support H2 url only.
                         httpHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))

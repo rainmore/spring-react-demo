@@ -73,6 +73,10 @@ logging:
 
 # HTTP encoding (HttpEncodingProperties)
 server:
+  compression:
+    enabled: true
+  http2:
+    enabled: true
   servlet:
     encoding:
       charset: UTF-8

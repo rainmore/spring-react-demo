@@ -1,7 +1,6 @@
 package au.com.rainmore.centus.controllers.books;
 
 import au.com.rainmore.centus.controllers.BaseRestController;
-import au.com.rainmore.centus.domains.books.Book;
 import au.com.rainmore.centus.services.books.BookService;
 import au.com.rainmore.centus.services.books.dto.BookDto;
 import au.com.rainmore.centus.services.core.dto.PageDto;
@@ -40,7 +39,7 @@ public class BookController extends BaseRestController {
     @ApiResponse(
             responseCode = "200",
             description = "The response payload contains the book details.",
-            content = @Content(schema = @Schema(implementation = Book.class)))
+            content = @Content(schema = @Schema(implementation = BookDto.class)))
     @GetMapping("")
     public PageDto<BookDto> list(
             @RequestParam(value = "search", required = false) String search,
