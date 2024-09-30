@@ -57,7 +57,7 @@ public class AuthController extends BaseRestController {
     @ApiResponse(
             responseCode = "200",
             description = "The response allows a valid user to login.",
-            content = @Content(schema = @Schema(implementation = Book.class)))
+            content = @Content(schema = @Schema(implementation = CurrentUserDto.class)))
     @PostMapping("/login")
     public ResponseEntity<Object> login(
             @RequestBody LoginDto loginDto) throws EntityNotFoundException {

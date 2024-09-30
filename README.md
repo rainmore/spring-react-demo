@@ -34,3 +34,7 @@ The Spring Boot application initialises the database with the data found in
 src/main/resources/schema.sql
 src/main/resources/data.sql
 ```
+
+## Swagger
+
+http://localhost:8080/swagger-ui/index.html?url=/api-docs

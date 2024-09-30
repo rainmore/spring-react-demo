@@ -64,8 +64,8 @@ springdoc:
   api-docs:
     path: /api-docs
   swagger-ui:
-    operationsSorter: method
-    queryConfigEnabled: true
+    disable-swagger-default-url: true
+    operations-sorter: method
 
 # Configuration for Logback.
 logging:
