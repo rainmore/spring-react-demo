@@ -145,7 +145,16 @@ VALUES (110010, 'The Fiction Police: Defending creativity in the age of artifici
     (110011, 'Basic Economics', 220014, '2014-12-01', CURRENT_TIMESTAMP()),
     (110012, 'The Crimson Canvas: A Romantic Suspense Novel', 220012, '2014-08-12', CURRENT_TIMESTAMP()),
     (110013, 'A Short History of Nearly Everything', 220013, '2016-08-15', CURRENT_TIMESTAMP()),
-    (110016, '365 Days of Art: A Creative Exercise for Every Day of the Year', 220016, '2017-11-01', CURRENT_TIMESTAMP());
+    (110014, '365 Days of Art: A Creative Exercise for Every Day of the Year', 220016, '2017-11-01', CURRENT_TIMESTAMP()),
+    (110015, 'Basic Economics v1', 220014, '2014-12-01', CURRENT_TIMESTAMP()),
+    (110016, 'The Crimson Canvas: A Romantic Suspense Novel v1', 220012, '2014-08-12', CURRENT_TIMESTAMP()),
+    (110017, 'A Short History of Nearly Everything v1', 220013, '2016-08-15', CURRENT_TIMESTAMP()),
+    (110018, '365 Days of Art: A Creative Exercise for Every Day of the Year v1', 220016, '2017-11-01', CURRENT_TIMESTAMP()),
+    (110019, 'Basic Economics v2', 220014, '2014-12-01', CURRENT_TIMESTAMP()),
+    (110020, 'The Crimson Canvas: A Romantic Suspense Novel v2', 220012, '2014-08-12', CURRENT_TIMESTAMP()),
+    (110021, 'A Short History of Nearly Everything v2', 220013, '2016-08-15', CURRENT_TIMESTAMP()),
+    (110022, '365 Days of Art: A Creative Exercise for Every Day of the Year v2', 220016, '2017-11-01', CURRENT_TIMESTAMP());
+
 
 
 

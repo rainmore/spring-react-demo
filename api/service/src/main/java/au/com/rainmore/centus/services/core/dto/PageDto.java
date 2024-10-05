@@ -19,7 +19,7 @@ public record PageDto<T>(
     }
 
     public PageDto(List<T> content, Pageable pageable, long total) {
-        this(content, pageable.getPageNumber(), pageable.getPageSize(), content.size());
+        this(content, pageable.getPageNumber(), pageable.getPageSize(), total);
     }
 
     public PageDto(Page<T> page) {
