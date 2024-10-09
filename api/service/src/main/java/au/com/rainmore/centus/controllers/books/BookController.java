@@ -47,7 +47,7 @@ public class BookController extends BaseRestController {
 
         Optional<Node> node = Optional.ofNullable(search).map(searchStr -> new RSQLParser().parse(searchStr));
 
-        return bookService.findAllDto(pageable);
+        return new PageDto(bookService.findAllDto(pageable));
     }
 
 }

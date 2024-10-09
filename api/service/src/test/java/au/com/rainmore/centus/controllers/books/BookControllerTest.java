@@ -2,7 +2,6 @@ package au.com.rainmore.centus.controllers.books;
 
 import au.com.rainmore.centus.services.books.BookService;
 import au.com.rainmore.centus.services.books.dto.BookDto;
-import au.com.rainmore.centus.services.core.dto.PageDto;
 import au.com.rainmore.centus.utils.PagingUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ class BookControllerTest {
     void test_list_return_401_without_authentication() throws Exception {
         Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
         Page<BookDto> page = new PageImpl<>(List.of(), pageable, 0);
-        given(bookService.findAllDto(any(Pageable.class))).willReturn(new PageDto<>(page));
+        given(bookService.findAllDto(any(Pageable.class))).willReturn(page);
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books")
@@ -54,7 +53,7 @@ class BookControllerTest {
     void test_list_without_any_request_parameters() throws Exception {
         Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
         Page<BookDto> page = new PageImpl<>(List.of(), pageable, 0);
-        given(bookService.findAllDto(any(Pageable.class))).willReturn(new PageDto<>(page));
+        given(bookService.findAllDto(any(Pageable.class))).willReturn(page);
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books")
@@ -63,16 +62,21 @@ class BookControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.total").isNumber());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.number").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.empty").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.first").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.last").isBoolean())
+        ;
     }
 
     @Test
     void test_list_with_pageable_request_parameters() throws Exception {
         Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
         Page<BookDto> page = new PageImpl<>(List.of(), pageable, 1);
-        given(bookService.findAllDto(any(Pageable.class))).willReturn(new PageDto<>(page));
+        given(bookService.findAllDto(any(Pageable.class))).willReturn(page);
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books?_pageNumber=0&_pageSize=10")
@@ -81,16 +85,21 @@ class BookControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.total").isNumber());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.number").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.empty").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.first").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.last").isBoolean())
+        ;
     }
 
     @Test
     void test_list_with_cors() throws Exception {
         Pageable pageable = PagingUtils.DEFAULT_PAGEABLE;
         Page<BookDto> page = new PageImpl<>(List.of(), pageable, 1);
-        given(bookService.findAllDto(any(Pageable.class))).willReturn(new PageDto<>(page));
+        given(bookService.findAllDto(any(Pageable.class))).willReturn(page);
 
         mvc.perform(MockMvcRequestBuilders
                         .get("/api/books")
@@ -102,8 +111,13 @@ class BookControllerTest {
                 .andExpect(header().stringValues(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Vary, Cache-Control, Pragma, Expires, Content-Type, Content-Language, Jwt-Token"))
                 .andExpect(header().stringValues(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:5173/"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageNumber").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageSize").isNumber())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.total").isNumber());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.number").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalPages").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").isNumber())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.empty").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.first").isBoolean())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.last").isBoolean())
+        ;
     }
 }

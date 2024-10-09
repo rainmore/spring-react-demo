@@ -2,7 +2,6 @@ package au.com.rainmore.centus.services.books;
 
 import au.com.rainmore.centus.domains.books.Book;
 import au.com.rainmore.centus.services.books.dto.BookDto;
-import au.com.rainmore.centus.services.core.dto.PageDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,8 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public PageDto<BookDto> findAllDto(Pageable pageable) {
-        final Page<BookDto> page = findAll(pageable).map(bookDtoConverter::convert);
-        return new PageDto<>(page);
+    public Page<BookDto> findAllDto(Pageable pageable) {
+        return findAll(pageable).map(bookDtoConverter::convert);
     }
 
 }

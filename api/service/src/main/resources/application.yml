@@ -97,4 +97,3 @@ server:
 # JWT
 jwt:
   secret: ${JWT_SECRET}
-
