@@ -27,4 +27,8 @@ public class BookService {
         return findAll(pageable).map(bookDtoConverter::convert);
     }
 
+    @Transactional
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
 }
