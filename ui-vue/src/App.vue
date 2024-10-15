@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import MainMenu from './components/layout/MainMenu.vue';
+import MainNav from './components/layout/MainNav.vue';
+import { authService } from './services/auth/auth-service';
+
+
 </script>
 
 <template>
-    <div>
-        <h1>lalal</h1>
+    <MainNav />
+    <section className="main-content columns is-fullheight">
+        <div className="column is-2 is-narrow-mobile is-fullheight section">
+            <MainMenu v-if="authService.isAuthenticated()" />
+        </div>
 
-    </div>
-
+        <div className="container column is-10 section">
+            <RouterView />
+        </div>
+    </section>
 </template>

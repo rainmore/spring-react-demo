@@ -18,5 +18,5 @@ ij_wrap_on_typing = false
 [*.{md}]
 indent_size = 2
 
-[*.{js,ts,tsx,scss,css,yml,json,html}]
+[*.{js,ts,tsx,scss,css,yml,json,html,vue}]
 indent_size = 2

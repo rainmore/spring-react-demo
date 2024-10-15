@@ -11,3 +11,20 @@ $customized-grey-dark: hsl(0, 0%, 29%);
 
 // Import the Google Font
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+aside.menu.sub-menu {
+  position: fixed;
+  bottom: 2rem;
+}
+
+
+table {
+  tr {
+    th.col-id {
+      width: 10%;
+    }
+    th.col-control {
+      width: 10%;
+    }
+  }
+}
