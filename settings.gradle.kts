@@ -1,8 +1,8 @@
 rootProject.name = "spring-react-demo"
 
 include(
-    "api:entity",
-    "api:service"
+    "entity",
+    "api"
 )
 
 pluginManagement {
