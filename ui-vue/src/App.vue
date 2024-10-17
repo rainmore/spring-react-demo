@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MainMenu from './components/layout/MainMenu.vue';
 import MainNav from './components/layout/MainNav.vue';
-import { authService } from './services/auth/auth-service';
+import { authService } from './services/auth/AuthService';
 
 
 </script>

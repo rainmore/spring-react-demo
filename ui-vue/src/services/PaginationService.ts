@@ -1,6 +1,6 @@
 import { Location, useLocation } from 'react-router-dom'
 import { Page, Pageable } from './api/types'
-import { UrlService } from './url-service'
+import { UrlService } from './UrlService'
 
 export class PaginationService {
   private readonly DefaultSize: number = 10

@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
-import { AxiosService } from '../axios-service.ts'
-import { JsonResponse, Page, Pageable } from './types'
-import { authService, AuthService } from '../auth/auth-service.ts'
+import { AxiosService } from '../AxiosService.ts'
+import { JsonResponse, Page, Pageable } from './types.ts'
+import { authService, AuthService } from '../auth/AuthService.ts'
 import { AppRoutes } from '../route/types.ts'
 
 type Response<Type> = Page<Type> | JsonResponse<Type>

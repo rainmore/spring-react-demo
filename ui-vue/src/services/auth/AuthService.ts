@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios'
-import { AxiosService } from '../axios-service.ts'
-import { AuthContext, CurrentUser } from './types'
+import { AxiosService } from '../AxiosService.ts'
+import { AuthContext, CurrentUser } from './types.ts'
 import { jwtDecode, JwtHeader } from 'jwt-decode'
-import { dateTimeService } from '../date-time-service.ts'
+import { dateTimeService } from '../DateTimeService.ts'
 import { ref, Ref } from 'vue'
 
 interface Login {

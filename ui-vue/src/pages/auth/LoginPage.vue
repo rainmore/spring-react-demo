@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { authService } from '../../services/auth/auth-service';
-import { UrlService } from '../../services/url-service';
+import { authService } from '../../services/auth/AuthService';
+import { UrlService } from '../../services/UrlService';
 import { AppRoutePaths } from '../../AppRoutes';
-import { toastService } from '../../services/toast-service';
+import { toastService } from '../../services/ToastService';
 import { ref } from 'vue';
 
 

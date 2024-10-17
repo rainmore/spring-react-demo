@@ -1,4 +1,4 @@
-import { apiService, ApiService } from '../api/api-service'
+import { apiService, ApiService } from '../api/ApiService'
 import { Page, Pageable } from '../api/types'
 import { Book, Category } from './types'
 

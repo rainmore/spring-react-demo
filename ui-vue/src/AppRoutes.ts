@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import { authService } from './services/auth/auth-service'
+import { authService } from './services/auth/AuthService'
 
 export enum AppRoutePaths {
   AUTH_LOGIN = '/auth/login',

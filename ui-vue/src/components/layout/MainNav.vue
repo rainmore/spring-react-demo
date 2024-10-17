@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AppRoutePaths } from '../../AppRoutes';
-import { authService } from '../../services/auth/auth-service';
-import { toastService } from '../../services/toast-service';
-import { UrlService } from '../../services/url-service';
+import { authService } from '../../services/auth/AuthService';
+import { toastService } from '../../services/ToastService';
+import { UrlService } from '../../services/UrlService';
 
 const urlService = new UrlService()
 
