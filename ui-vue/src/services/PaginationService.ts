@@ -1,4 +1,3 @@
-import { Location, useLocation } from 'react-router-dom'
 import { Page, Pageable } from './api/types'
 import { UrlService } from './UrlService'
 
@@ -7,16 +6,10 @@ export class PaginationService {
   private readonly RangeSize: number = 7
   private readonly RangeMiddle: number = 3 // Math.floor(RangeSize / 2)
 
-  private location: Location = useLocation()
-
   urlService = new UrlService()
 
   getBasePath(): string {
     return this.urlService.getBasePath()
-  }
-
-  getSearchParameter(): string {
-    return this.location.search !== '' ? `?${this.location.search}` : ''
   }
 
   getPageable(): Pageable {

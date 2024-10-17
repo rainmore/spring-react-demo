@@ -20,6 +20,10 @@ const routes = [
   { path: AppRoutePaths.NOT_FOUND, component: () => import('./pages/NotFoundPage.vue') },
   { path: AppRoutePaths.ABOUT, component: () => import('./pages/AboutPage.vue') },
   { path: AppRoutePaths.DASHBOARD,  meta: {requireAuth: true}, component: () => import('./pages/DashboardPage.vue') },
+  { path: AppRoutePaths.BOOK_LIST,  meta: {requireAuth: true}, component: () => import('./pages/book/ListPage.vue') },
+  { path: AppRoutePaths.BOOK_CATEGORY_LIST,  meta: {requireAuth: true}, component: () => import('./pages/book/category/ListPage.vue') },
+  { path: AppRoutePaths.BOOK_CATEGORY_ADD,  meta: {requireAuth: true}, component: () => import('./pages/book/category/FormPage.vue') },
+  { path: AppRoutePaths.BOOK_CATEGORY_EDIT,  meta: {requireAuth: true}, component: () => import('./pages/book/category/FormPage.vue') },
 ]
 
 export const appRouters = createRouter({

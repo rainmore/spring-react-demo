@@ -28,7 +28,7 @@ const currentUser = authService.getAuthContext().value?.currentUser
 
     <div class="navbar-end" v-if="authService.isAuthenticated()">
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">{{ currentUser.account.firstname }} {{ currentUser.account.lastname }}</a>
+        <a class="navbar-link">{{ currentUser?.account.firstname }} {{ currentUser?.account.lastname }}</a>
 
         <div class="navbar-dropdown is-right">
           <a class="navbar-item">Change Profile</a>

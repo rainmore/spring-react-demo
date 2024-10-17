@@ -2,7 +2,7 @@ import { AxiosInstance, AxiosResponse } from 'axios'
 import { AxiosService } from '../AxiosService.ts'
 import { JsonResponse, Page, Pageable } from './types.ts'
 import { authService, AuthService } from '../auth/AuthService.ts'
-import { AppRoutes } from '../route/types.ts'
+import { AppRoutePaths } from '../../AppRoutes.ts'
 
 type Response<Type> = Page<Type> | JsonResponse<Type>
 
@@ -38,7 +38,7 @@ export class ApiService {
   private getAxioInstance(): AxiosInstance {
     const axiosInstance = this.axiosService.getAxiosInstance()
     if (this.authService.isAuthenticated()) {
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.authService.getAuthContext()?.jwtToken}`
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${this.authService.getAuthContext().value?.jwtToken}`
     }
 
     axiosInstance.interceptors.response.use(
@@ -46,7 +46,7 @@ export class ApiService {
       (error) => {
         if (error.response.status === 401) {
           this.authService.resetAuthContext()
-          window.location.href = AppRoutes.AUTH_LOGIN
+          window.location.href = AppRoutePaths.AUTH_LOGIN
         } else {
           return error
         }
