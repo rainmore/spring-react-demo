@@ -1,6 +1,0 @@
-node_modules
-.gitignore
-
-# Ignore artifacts:
-build
-coverage
