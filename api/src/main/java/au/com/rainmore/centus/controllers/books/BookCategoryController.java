@@ -4,8 +4,6 @@ package au.com.rainmore.centus.controllers.books;
 import au.com.rainmore.centus.services.books.BookCategoryService;
 import au.com.rainmore.centus.services.books.dto.CategoryDto;
 import au.com.rainmore.centus.services.core.dto.PageDto;
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 @Tag(name = "Book Category APIs")
 @RestController
@@ -42,9 +38,6 @@ public class BookCategoryController {
     public PageDto<CategoryDto> list(
             @RequestParam(value = "search", required = false) String search,
             Pageable pageable) {
-
-        Optional<Node> node = Optional.ofNullable(search).map(searchStr -> new RSQLParser().parse(searchStr));
-
-        return new PageDto<>(bookcategoryService.findAllDto(pageable));
+        return new PageDto<>(bookcategoryService.findAllDto(search, pageable));
     }
 }

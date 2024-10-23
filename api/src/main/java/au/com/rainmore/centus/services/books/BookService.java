@@ -1,11 +1,16 @@
 package au.com.rainmore.centus.services.books;
 
 import au.com.rainmore.centus.domains.books.Book;
+import au.com.rainmore.centus.domains.books.QBook;
 import au.com.rainmore.centus.services.books.dto.BookDto;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import io.github.perplexhub.rsql.RSQLQueryDslSupport;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -18,13 +23,17 @@ public class BookService {
         this.bookDtoConverter = bookDtoConverter;
     }
 
-    public Page<Book> findAll(Pageable pageable) {
-        return bookRepository.findAll(pageable);
+    public Page<Book> findAll(Optional<BooleanExpression> booleanExpression,
+                              Pageable pageable) {
+        return booleanExpression.map(be -> bookRepository.findAll(be, pageable))
+                .orElseGet(() -> bookRepository.findAll(pageable));
     }
 
     @Transactional(readOnly = true)
-    public Page<BookDto> findAllDto(Pageable pageable) {
-        return findAll(pageable).map(bookDtoConverter::convert);
+    public Page<BookDto> findAllDto(String search, Pageable pageable) {
+        Optional<BooleanExpression> criteria = Optional.ofNullable(search)
+                .map(s -> RSQLQueryDslSupport.toPredicate(s, QBook.book));
+        return findAll(criteria, pageable).map(bookDtoConverter::convert);
     }
 
     @Transactional
