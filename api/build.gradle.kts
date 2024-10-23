@@ -103,7 +103,6 @@ dependencies {
 
     // API
     implementation("io.swagger.core.v3:swagger-annotations:${project.properties["swagger-annotations.version"]}")
-    implementation("cz.jirutka.rsql:rsql-parser:${project.properties["rsql-parser.version"]}")
     runtimeOnly("org.springdoc:springdoc-openapi-starter-webmvc-ui:${project.properties["springdoc-openapi.version"]}")
 
     // JPA & DB
@@ -114,6 +113,9 @@ dependencies {
 
     implementation("com.querydsl:querydsl-jpa") { artifact { classifier = "jakarta" } }
     implementation("com.querydsl:querydsl-sql-spring")
+    implementation("io.github.nstdio:rsql-parser:${project.properties["rsql-parser.version"]}")
+    implementation("io.github.perplexhub:rsql-querydsl-spring-boot-starter:${project.properties["querydsl-rsql-parser.version"]}")
+    implementation("io.github.perplexhub:rsql-querydsl:${project.properties["querydsl-rsql-parser.version"]}")
 
     // Logging
     implementation("org.slf4j:slf4j-api")
